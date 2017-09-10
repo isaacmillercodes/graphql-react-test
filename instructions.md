@@ -17,6 +17,8 @@ Then, in index.js
 
 # Step 2 - Home page with recent pet images
 1. Create a file called PetImageList.js inside components
+1. Add imports from react, react-apollo, and semantic-ui-react
+1.
 
 
 # Step 3 - Logging in/registering
