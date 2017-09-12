@@ -2,8 +2,7 @@
 
 1. create-react-app 'project name'
 1. npm i -S react-apollo
-1. npm i -S semantic-ui-react
-1. import cdn in public/index.html or npm i -S semantic-ui-css
+1. import bootswatch cdn in public/index.html
 1. add styles and components folders inside src, move App.js into components, move App.css and index.css into styles
 1. update import paths in App.js and index.js
 
@@ -17,13 +16,31 @@ Then, in index.js
 
 # Step 2 - Home page with recent pet images
 1. Create a file called PetImageList.js inside components
-1. Add imports from react, react-apollo, and semantic-ui-react
-1.
+1. Add imports from react and react-apollo
+1. Add query as a constant using gql
+1. declare components
+1. add loading and error handling
+1. prepare array from query
+1. write template for components
+1. export graphql higher order component and add to App.
+1. Create a file called SplashPage.js inside components
+1. import react, component, and PetImageList
+1. Render divs with app classes, wrapping the PetImageList and adding a header and login button
+1. Change App.js to just render the SplashPage component
 
+# Step 3 - Routing
+1. npm i -S react-router and react-router-dom
+1. Create a file inside components called Auth.js
+1. Add a simple component that just renders a header
+1. In index.js, import { BrowserRouter } from 'react-router-dom' and wrap apollo client with BrowserRouter
+1. In App.js, import { Switch, Route } from 'react-router-dom'
+1. Register routes with components for '/'(SplashPage) and '/auth'(Auth)
+1. In SplashPage, import { Link } from 'react-router-dom' and import { withRouter } from 'react-router'
+1. Wrap button in Link and export new SplashPage component withRouter
 
-# Step 3 - Logging in/registering
+# Step 4 - Logging in/registering
 
-# Step 4 - User Profile
+# Step 5 - User Profile
 
 # Step 6 - Pet Profile
 

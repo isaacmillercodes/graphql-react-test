@@ -3,3 +3,16 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.splash-page-pets {
+  position: relative;
+  height: 35vh;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  font-family: 'Courgette', cursive;
+  font-size: 8rem;
+}
