@@ -13,7 +13,7 @@ class SplashPage extends Component {
         </div>
         <h1>Petstagram</h1>
         <Link to='/auth'>
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary">Login or Register</button>
         </Link>
       </div>
     )

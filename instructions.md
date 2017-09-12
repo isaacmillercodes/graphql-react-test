@@ -39,6 +39,10 @@ Then, in index.js
 1. Wrap button in Link and export new SplashPage component withRouter
 
 # Step 4 - Logging in/registering
+1. Inside Auth.js, import { gql, graphql, compose } from 'react-apollo'
+1. Create state object for register user fields, add a key of login and set it to true
+
+TODO
 
 # Step 5 - User Profile
 
