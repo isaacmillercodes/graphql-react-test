@@ -106,7 +106,7 @@ class Auth extends Component {
         this.saveUserInfo(id, token)
       }
     } else {
-      const response = await this.props.createUserMutation({
+      const response = await this.props.registerUserMutation({
         variables: {
           name,
           email,
@@ -124,7 +124,7 @@ class Auth extends Component {
   }
 
   saveUserInfo = (id, token) => {
-    sessionStorage.setItem('Petsagram_Id', id)
+    sessionStorage.setItem('Petstagram_Id', id)
     sessionStorage.setItem('Petstagram_Token', token)
   }
 

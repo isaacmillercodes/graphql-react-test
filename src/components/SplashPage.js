@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 class SplashPage extends Component {
 
   render() {
-    const user_id = sessionStorage.getItem('Petstagram_Id');
+    // const user_id = sessionStorage.getItem('Petstagram_Id');
     const token = sessionStorage.getItem('Petstagram_Token');
     return (
       <div className="App">
