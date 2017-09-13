@@ -12,11 +12,11 @@ class Auth extends Component {
   render() {
     return (
       <div>
-        <h3>{this.state.login ? 'Login' : 'Sign Up'}</h3>
-        <form className="form-horizontal">
+        <h3 className="col-sm-offset-2">{this.state.login ? 'Login' : 'Sign Up'}</h3>
+        <form className="form-horizontal" onSubmit={(e) => this.sendAuthRequest(e)}>
           {!this.state.login &&
           <div className="form-group">
-            <label for="user-name" className="col-sm-2 control-label">Name</label>
+            <label htmlFor="user-name" className="col-sm-2 control-label">Name</label>
             <div className="col-sm-6">
               <input
                 type="text"
@@ -28,7 +28,7 @@ class Auth extends Component {
             </div>
           </div>}
           <div className="form-group">
-            <label for="user-email" className="col-sm-2 control-label">Email</label>
+            <label htmlFor="user-email" className="col-sm-2 control-label">Email</label>
             <div className="col-sm-6">
               <input
                 type="email"
@@ -40,7 +40,7 @@ class Auth extends Component {
             </div>
           </div>
           <div className="form-group">
-            <label for="user-password" className="col-sm-2 control-label">Password</label>
+            <label htmlFor="user-password" className="col-sm-2 control-label">Password</label>
             <div className="col-sm-6">
               <input
                 type="password"
@@ -53,7 +53,7 @@ class Auth extends Component {
           </div>
           {!this.state.login &&
           <div className="form-group">
-            <label for="user-profile-image" className="col-sm-2 control-label">Profile Image URL</label>
+            <label htmlFor="user-profile-image" className="col-sm-2 control-label">Profile Image URL</label>
             <div className="col-sm-6">
               <input
                 type="text"
@@ -69,7 +69,6 @@ class Auth extends Component {
               <button
                 type="submit"
                 className="btn btn-info"
-                onClick={() => this.sendAuthRequest()}
               >
                 {this.state.login ? 'Login' : 'Register' }
               </button>
@@ -91,7 +90,8 @@ class Auth extends Component {
     )
   }
 
-  sendAuthRequest = async () => {
+  sendAuthRequest = async (event) => {
+    event.preventDefault();
     const { name, email, password, profile_image_url } = this.state
     if (this.state.login) {
       const response = await this.props.loginUserMutation({
@@ -100,9 +100,11 @@ class Auth extends Component {
           password
         }
       })
-      const id = response.data.loginUser.user.id
+      const id = response.data.loginUser.user_id
       const token = response.data.loginUser.token
-      this.saveUserInfo(id, token)
+      if (token) {
+        this.saveUserInfo(id, token)
+      }
     } else {
       const response = await this.props.createUserMutation({
         variables: {
@@ -112,11 +114,13 @@ class Auth extends Component {
           profile_image_url
         }
       })
-      const id = response.data.loginUser.user.id
+      const id = response.data.loginUser.user_id
       const token = response.data.loginUser.token
-      this.saveUserInfo(id, token)
+      if (token) {
+        this.saveUserInfo(id, token)
+      }
     }
-    // this.props.history.push(`/`)
+    this.props.history.push('/')
   }
 
   saveUserInfo = (id, token) => {

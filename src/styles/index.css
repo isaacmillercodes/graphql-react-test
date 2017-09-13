@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
 
 .splash-page-pets {
@@ -13,6 +13,6 @@ body {
 }
 
 h1 {
-  font-family: 'Courgette', cursive;
+  font-family: 'Itim', cursive;
   font-size: 8rem;
 }

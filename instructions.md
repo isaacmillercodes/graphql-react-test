@@ -41,10 +41,15 @@ Then, in index.js
 # Step 4 - Logging in/registering
 1. Inside Auth.js, import { gql, graphql, compose } from 'react-apollo'
 1. Create state object for register user fields, add a key of login and set it to true
-
-TODO
+1. Create two mutations, one for registering and one for logging in
+1. Create a function called sendAuthRequest that logs in or registers based on the state of login
+1. Create a saveUserInfo function that stores the user id and token in sessionStorage
+1. Write markup with conditionals for register-only fields
+1. Wrap two higher order components inside compose, one for registering and one for logging in
+1. Change the home page to check for id/token and change the button's text on successfuly log in
 
 # Step 5 - User Profile
+1. Create a component called UserProfile
 
 # Step 6 - Pet Profile
 
