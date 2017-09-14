@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 class SplashPage extends Component {
 
   render() {
-    // const user_id = sessionStorage.getItem('Petstagram_Id');
+    const user_id = sessionStorage.getItem('Petstagram_Id');
     const token = sessionStorage.getItem('Petstagram_Token');
     return (
       <div className="App">
@@ -14,11 +14,19 @@ class SplashPage extends Component {
           <PetImageList />
         </div>
         <h1>Petstagram</h1>
-        <Link to='/auth'>
-          <button className="btn btn-primary">
-            {token ? 'Your Profile' : 'Login or Register' }
-          </button>
-        </Link>
+        {token !== -1 ?
+          <Link to={`/profile/${user_id}`}>
+            <button className="btn btn-primary">
+              Your Profile
+            </button>
+          </Link>
+          :
+          <Link to='/auth'>
+            <button className="btn btn-primary">
+              Login or Register
+            </button>
+          </Link>
+        }
       </div>
     )
   }

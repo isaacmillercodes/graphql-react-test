@@ -12,7 +12,6 @@ class PetImageList extends Component {
     }
 
     const allImages = this.props.allPetProfileImagesQuery.pets.map(pet => pet.profile_image)
-    console.log(allImages)
     const imagesToRender = allImages.splice(-6);
 
     return (

@@ -7,9 +7,72 @@ body {
 .splash-page-pets {
   position: relative;
   height: 35vh;
+  background-position: 50% 25%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile-pic {
+  height: 49vh;
+  width: 33vw;
+  background-position: 5% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile-pet-row {
+  height: 16vh;
+  width: 16vh;
+  margin-right: 2%;
+}
+
+.pet-followed-row {
+  margin-top: 2%;
+}
+
+.profile-pet-row-item {
+  height: 16vh;
+  width: 16vh;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.profile-friend-row {
+  height: 16vh;
+  width: 16vh;
+  margin-right: 2%;
+}
+
+.profile-friend-row-item {
+  height: 16vh;
+  width: 16vh;
+  background-position: 10% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile-name {
+  font-style: italic;
+  font-size: 4rem;
+}
+
+.profile-button {
+  margin-top: 8vh;
+  height: 6vh;
+  width: 12vw;
+}
+
+.profile-button h4 {
+  margin: 0 auto;
+}
+
+.pet-followers {
+  margin-left: 40%;
+}
+
+.fa-heart {
+  color: red;
 }
 
 h1 {
