@@ -22,8 +22,7 @@ class UserProfile extends Component {
     }
 
     const user = this.props.userProfileQuery.user
-    const friendIndex = user.friends.findIndex(friend => friend.id === parseInt(viewer_id, 10));
-    const friendsWithUser = friendIndex >= 0;
+    const friendsWithUser = user.friends.some(friend => friend.id === parseInt(viewer_id, 10));
 
     return (
       <div>

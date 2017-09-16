@@ -7,17 +7,23 @@ body {
 .splash-page-pets {
   position: relative;
   height: 35vh;
-  background-position: 50% 25%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.profile-pic, .pet-profile-pic {
+  height: 60vh;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .profile-pic {
-  height: 60vh;
-  width: 100%;
   background-position: 5% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
+}
+
+.pet-profile-pic {
+  background-position: 20% 30%;
 }
 
 .profile-pet-row, .profile-user-row {
