@@ -13,62 +13,58 @@ body {
 }
 
 .profile-pic {
-  height: 49vh;
-  width: 33vw;
+  height: 60vh;
+  width: 100%;
   background-position: 5% 50%;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.profile-pet-row {
-  height: 16vh;
-  width: 16vh;
-  margin-right: 2%;
+.profile-pet-row, .profile-user-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.pet-followed-row {
+.pet-followed-row, .profile-user-row {
   margin-top: 2%;
 }
 
+.profile-pet-row-item, .profile-user-row-item{
+  height: 8vw;
+  width: 8vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .profile-pet-row-item {
-  height: 16vh;
-  width: 16vh;
   background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
-.profile-friend-row {
-  height: 16vh;
-  width: 16vh;
-  margin-right: 2%;
-}
-
-.profile-friend-row-item {
-  height: 16vh;
-  width: 16vh;
+.profile-user-row-item {
   background-position: 10% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
-.profile-name {
-  font-style: italic;
-  font-size: 4rem;
+.pet-name, .user-name {
+  width: 8vw;
+}
+
+.profile-pet-container:not(:first-child), .profile-user-container:not(:first-child) {
+  margin-left: 2vw;
+}
+
+.pet-followers {
+  margin-left: 10%;
 }
 
 .profile-button {
-  margin-top: 8vh;
+  margin-top: 2vh;
   height: 6vh;
   width: 12vw;
 }
 
 .profile-button h4 {
   margin: 0 auto;
-}
-
-.pet-followers {
-  margin-left: 40%;
 }
 
 .fa-heart {
