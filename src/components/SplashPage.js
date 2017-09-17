@@ -14,7 +14,7 @@ class SplashPage extends Component {
           <PetImageList />
         </div>
         <h1>Petstagram</h1>
-        {token !== -1 ?
+        {token ?
           <Link to={`/profile/${user_id}`}>
             <button className="btn btn-primary">
               Your Profile

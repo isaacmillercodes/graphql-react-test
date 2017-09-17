@@ -56,7 +56,7 @@ class Auth extends Component {
             <label htmlFor="user-profile-image" className="col-sm-2 control-label">Profile Image URL</label>
             <div className="col-sm-6">
               <input
-                type="text"
+                type="url"
                 onChange={(e) => this.setState({ profile_image_url: e.target.value })}
                 className="form-control"
                 id="user-profile-image"

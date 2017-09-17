@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { graphql, gql } from 'react-apollo';
+import { graphql, gql, compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
 class UserProfile extends Component {
 
+  state = {
+    friendshipStatus: '',
+    friendRequestSent: false
+  }
+
   render() {
-    const user_id = this.props.match.params.id;
-    const viewer_id = sessionStorage.getItem('Petstagram_Id');
+    const user_id = parseInt(this.props.match.params.id, 10);
+    const viewer_id = parseInt(sessionStorage.getItem('Petstagram_Id'), 10);
     const isOwnProfile = user_id === viewer_id;
 
     if (!viewer_id || viewer_id === -1) {
@@ -22,7 +27,7 @@ class UserProfile extends Component {
     }
 
     const user = this.props.userProfileQuery.user
-    const friendsWithUser = user.friends.some(friend => friend.id === parseInt(viewer_id, 10));
+    const friendsWithUser = user.friends.some(friend => friend.id === viewer_id);
 
     return (
       <div>
@@ -37,10 +42,21 @@ class UserProfile extends Component {
             </Link>
           </div>
         }
-        {!isOwnProfile && !friendsWithUser &&
+        {!isOwnProfile && !friendsWithUser && !this.state.friendRequestSent &&
           <div className="col-sm-2">
-            <button className="btn btn-success profile-button"><h4>Send friend request</h4></button>
+            <button
+              className="btn btn-success profile-button"
+              onClick={() => this.sendFriendRequest(user_id, viewer_id)}
+            >
+              <h4>Send friend request</h4>
+            </button>
           </div>
+        }
+        {friendsWithUser &&
+          <h4><em>You and {user.name} are friends</em></h4>
+        }
+        {!friendsWithUser && this.state.friendRequestSent &&
+          <h4><em>Friend request sent to {user.name}</em></h4>
         }
         <div className="col-sm-12">
           {isOwnProfile ? <h4>Your Pets</h4> : <h4>Pets {user.name} Owns</h4>}
@@ -95,8 +111,24 @@ class UserProfile extends Component {
         </div>
       </div>
     )
-
   }
+
+  sendFriendRequest = async (user_one, user_two) => {
+    const response = await this.props.friendRequestMutation({
+      variables: {
+        user_one,
+        user_two
+      }
+    })
+    const status = response.data.friendRequest.status
+    if (status) {
+      this.setState({
+        friendshipStatus: status,
+        friendRequestSent: true
+      })
+    }
+  }
+
 }
 
 const USER_PROFILE_QUERY = gql`
@@ -108,6 +140,7 @@ const USER_PROFILE_QUERY = gql`
         id
         name
         profile_image {
+          id
           image_url
         }
       }
@@ -116,6 +149,7 @@ const USER_PROFILE_QUERY = gql`
         name
         total_followers
         profile_image {
+          id
           image_url
         }
       }
@@ -124,17 +158,36 @@ const USER_PROFILE_QUERY = gql`
         name
         total_followers
         profile_image {
+          id
           image_url
         }
       }
       profile_image {
+        id
         image_url
       }
     }
   }
 `
 
-export default graphql(USER_PROFILE_QUERY, {
-  name: 'userProfileQuery',
-  options: (props) => ({ variables: { id: props.match.params.id } })
-})(UserProfile)
+const FRIEND_REQUEST_MUTATION = gql`
+  mutation FriendRequestMutation($user_one: Int!, $user_two: Int!) {
+    friendRequest(
+      user_one: $user_one,
+      user_two: $user_two
+    ) {
+      status
+    }
+  }
+`
+
+export default compose(
+  graphql(USER_PROFILE_QUERY, {
+    name: 'userProfileQuery',
+    options: (props) => ({
+      variables: { id: props.match.params.id },
+      fetchPolicy: 'cache-and-network'
+    })
+  }),
+  graphql(FRIEND_REQUEST_MUTATION, { name: 'friendRequestMutation' })
+)(UserProfile)

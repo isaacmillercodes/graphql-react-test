@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { gql, graphql, compose } from 'react-apollo'
+import { gql, graphql } from 'react-apollo'
 
 class AddPet extends Component {
   state = {
@@ -78,7 +78,7 @@ class AddPet extends Component {
             <label htmlFor="pet-profile-image" className="col-sm-2 control-label">Profile Image URL</label>
             <div className="col-sm-6">
               <input
-                type="text"
+                type="url"
                 onChange={(e) => this.setState({ profile_image_url: e.target.value })}
                 className="form-control"
                 id="pet-profile-image"
