@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserProfile from './UserProfile';
+import AddPet from './AddPet';
 import PetProfile from './PetProfile';
 import SplashPage from './SplashPage';
 import Auth from './Auth';
@@ -12,6 +13,7 @@ class App extends Component {
       <Switch>
         <Route exact path='/auth' component={Auth}/>
         <Route exact path='/profile/:id' component={UserProfile}/>
+        <Route exact path='/profile/:id/add_pet' component={AddPet}/>
         <Route exact path='/pet/:id' component={PetProfile}/>
         <Route exact path='/' component={SplashPage}/>
       </Switch>

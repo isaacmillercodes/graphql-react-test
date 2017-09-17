@@ -32,7 +32,9 @@ class UserProfile extends Component {
         </div>
         {isOwnProfile &&
           <div className="col-sm-2">
-            <button className="btn btn-success profile-button"><h4>Add Pet</h4></button>
+            <Link to={`/profile/${user.id}/add_pet`}>
+              <button className="btn btn-success profile-button"><h4>Add Pet</h4></button>
+            </Link>
           </div>
         }
         {!isOwnProfile && !friendsWithUser &&
@@ -45,13 +47,15 @@ class UserProfile extends Component {
           <div className="profile-pet-row">
             {user.pets_owned.map(pet => (
               <div key={pet.id} className="profile-pet-container">
-                <div className="profile-pet-row-item" alt="row of pets" style={{backgroundImage: `url(${pet.profile_image.image_url})`}}></div>
-                <div className="pet-name">
-                  <p>
-                    {pet.name}
-                    <span className="pet-followers pull-right">{pet.total_followers} <i className="fa fa-heart"></i></span>
-                  </p>
-                </div>
+                <Link to={`/pet/${pet.id}`}>
+                  <div className="profile-pet-row-item" alt="row of pets" style={{backgroundImage: `url(${pet.profile_image.image_url})`}}></div>
+                  <div className="pet-name">
+                    <p>
+                      {pet.name}
+                      <span className="pet-followers pull-right">{pet.total_followers} <i className="fa fa-heart"></i></span>
+                    </p>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -61,13 +65,15 @@ class UserProfile extends Component {
           <div className="profile-pet-row">
             {user.pets_followed.map(pet => (
               <div key={pet.id} className="profile-pet-container">
-                <div className="profile-pet-row-item" alt="row of pets" style={{backgroundImage: `url(${pet.profile_image.image_url})`}}></div>
-                <div className="pet-name">
-                  <p>
-                    {pet.name}
-                    <span className="pet-followers pull-right">{pet.total_followers} <i className="fa fa-heart"></i></span>
-                  </p>
-                </div>
+                <Link to={`/pet/${pet.id}`}>
+                  <div className="profile-pet-row-item" alt="row of pets" style={{backgroundImage: `url(${pet.profile_image.image_url})`}}></div>
+                  <div className="pet-name">
+                    <p>
+                      {pet.name}
+                      <span className="pet-followers pull-right">{pet.total_followers} <i className="fa fa-heart"></i></span>
+                    </p>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -96,6 +102,7 @@ class UserProfile extends Component {
 const USER_PROFILE_QUERY = gql`
   query UserProfileQuery($id: Int!) {
     user(id: $id) {
+      id
       name
       friends {
         id
