@@ -12,7 +12,7 @@ class PetProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.petProfileQuery.pet) {
+    if (nextProps.petProfileQuery.pet && !this.state.profile_likes) {
       this.setState(
         {
           profile_image_id: nextProps.petProfileQuery.pet.profile_image.id,
@@ -21,6 +21,8 @@ class PetProfile extends Component {
           profile_likes: nextProps.petProfileQuery.pet.profile_image.likes
         }
       )
+    } else if (nextProps.petProfileQuery.pet && this.state.profile_likes) {
+      this.setState({ profile_likes: ++this.state.profile_likes })
     }
   }
 
@@ -201,6 +203,7 @@ const LIKE_IMAGE_MUTATION = gql`
       image_id: $image_id
     ) {
       id
+      likes
     }
   }
 `
@@ -224,15 +227,5 @@ export default compose(
       ]
     })
   }),
-  graphql(LIKE_IMAGE_MUTATION, {
-    name: 'likeImageMutation',
-    options: (props) => ({
-      refetchQueries: [
-        {
-          query: PET_PROFILE_QUERY,
-          variables: { id: props.match.params.id }
-        }
-      ]
-    })
-  })
+  graphql(LIKE_IMAGE_MUTATION, { name: 'likeImageMutation' })
 )(PetProfile)
